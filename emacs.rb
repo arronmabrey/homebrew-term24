@@ -89,7 +89,7 @@ class Emacs < Formula
 
       # Replace the symlink with one that avoids starting Cocoa.
       (bin/"emacs").unlink # Kill the existing symlink
-      (bin/"emacs").write <<-EOS.undent
+      (bin/"emacs").write <<~EOS
         #!/bin/bash
         exec #{prefix}/Emacs.app/Contents/MacOS/Emacs -nw  "$@"
       EOS
@@ -119,14 +119,14 @@ class Emacs < Formula
   end
 
   def caveats
-    if build.with? "cocoa" then <<-EOS.undent
+    if build.with? "cocoa" then <<~EOS
       A command line wrapper for the cocoa app was installed to:
         #{bin}/emacs
       EOS
     end
   end
 
-  def plist; <<-EOS.undent
+  def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
